@@ -1,0 +1,27 @@
+
+name: Build and Test
+
+on:
+  push:
+    branches: [ "main" ]
+  pull_request:
+    branches: [ "main" ]
+
+jobs:
+  build_test:
+    runs-on: ubuntu-latest
+
+
+
+    steps:
+    - name: Clone the GitHub repository on the machine
+      uses: actions/checkout@v4
+    - name: Use Node.js 22
+      uses: actions/setup-node@v4
+      with:
+        node-version: 22
+        cache: 'npm'
+    - name: Install program dependencies
+      run: npm install
+    - name: Run integration tests
+      run: npm run test
